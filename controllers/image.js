@@ -18,8 +18,16 @@ const getImage = async (req, res, next) => {
 	res.status(200).json({ image });
 };
 
+const deleteImage = async (req, res, next) => {
+	const { id: imageID } = req.params;
+	const image = await Image.findOneAndDelete({ _id: imageID });
+
+	res.status(200).json({ image });
+};
+
 module.exports = {
 	getImages,
 	addImages,
 	getImage,
+	deleteImage,
 };
