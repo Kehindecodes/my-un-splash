@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "client": "cd client/unsplash && npm run dev",
+    "dev": "concurrently --kill-others-on-fail \"npm start\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
@@ -13,5 +15,8 @@
     "express": "^4.18.1",
     "mongoose": "^6.3.4",
     "nodemon": "^2.0.16"
+  },
+  "devDependencies": {
+    "concurrently": "^7.4.0"
   }
 }
