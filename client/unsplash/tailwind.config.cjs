@@ -6,6 +6,9 @@ module.exports = {
 			grey: '#bdbdbd',
 			gren: '#3DB46D',
 			white: '#ffffff',
+			red: ' #EB5757',
+			black: '#000000;',
+			trans: 'rgba(0, 0, 0, 0.38)',
 		},
 		fontFamily: {
 			noto: ['Noto Sans', 'sans-serif'],
@@ -14,6 +17,10 @@ module.exports = {
 		extend: {
 			width: {
 				c: '300px',
+				normal: '382.87px',
+			},
+			height: {
+				small: '287.11px',
 			},
 		},
 	},
