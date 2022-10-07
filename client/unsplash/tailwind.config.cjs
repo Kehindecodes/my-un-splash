@@ -9,6 +9,9 @@ module.exports = {
 			red: ' #EB5757',
 			black: '#000000;',
 			trans: 'rgba(0, 0, 0, 0.38)',
+			text: '#333333',
+			text2: '#4f4f4f',
+			placeholder: '#bdbdbd',
 		},
 		fontFamily: {
 			noto: ['Noto Sans', 'sans-serif'],
@@ -18,9 +21,11 @@ module.exports = {
 			width: {
 				c: '300px',
 				normal: '382.87px',
+				modal: '620px',
 			},
 			height: {
 				small: '287.11px',
+				modal: '367.2px',
 			},
 		},
 	},
