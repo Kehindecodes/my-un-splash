@@ -1,7 +1,16 @@
 import { useState, useRef, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
-const AddModal = ({ openModal, closeModal, modalIsOpen }) => {
+const AddModal = ({
+	openModal,
+	closeModal,
+	modalIsOpen,
+	changeLabel,
+	changeUrl,
+	handleSubmit,
+	label,
+	url,
+}) => {
 	const cancelButtonRef = useRef(null);
 	return (
 		<Transition.Root show={modalIsOpen} as={Fragment}>
@@ -53,7 +62,7 @@ const AddModal = ({ openModal, closeModal, modalIsOpen }) => {
 											className='text-lg leading-6 text-text font-noto font-medium mb-4'>
 											Add a new photo
 										</Dialog.Title>
-										<form className='mt-2 w-full'>
+										<form className='mt-2 w-full' onSubmit={handleSubmit}>
 											<div>
 												<label className='block'>
 													<span className='font-medium text-sm text-text2'>
@@ -63,6 +72,8 @@ const AddModal = ({ openModal, closeModal, modalIsOpen }) => {
 														className='mt-1 block w-full rounded-xl placeholder:text-placeholder '
 														type='text'
 														placeholder='Suspendisse elit massa'
+														value={label}
+														onChange={changeLabel}
 													/>
 												</label>
 
@@ -74,34 +85,35 @@ const AddModal = ({ openModal, closeModal, modalIsOpen }) => {
 														className='mt-1 block w-full rounded-xl placeholder:text-placeholder'
 														type='text'
 														placeholder='https://images.unsplash.com/photo-1584395630827-860eee694d7b?ixlib=r...'
+														value={url}
+														onChange={changeUrl}
 													/>
 												</label>
 											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-							<div className='bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse mt-5'>
-								<button
-									type='button'
-									className='w-full inline-flex justify-center
+											<div className='bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse mt-5'>
+												<button
+													type='submit'
+													className='w-full inline-flex justify-center
                      border border-transparent shadow-sm px-4 py-2 text-white bg-gren  font-noto rounded-xl p-3 text-sm  hover:bg-red-700 
                       focus:outline-none
- sm:ml-3 sm:w-auto sm:text-sm'
-									onClick={closeModal}>
-									Submit
-								</button>
-								<button
-									type='button'
-									className='mt-3 w-full inline-flex justify-center
+ sm:ml-3 sm:w-auto sm:text-sm'>
+													Submit
+												</button>
+												<button
+													type='button'
+													className='mt-3 w-full inline-flex justify-center
                     rounded-md border border-none shadow-sm px-4 py-2
                      bg-white text-placeholder font-medium text-gray-700
                       hover: border-red  sm:mt-0
                         sm:ml-3 sm:w-auto sm:text-sm'
-									onClick={closeModal}
-									ref={cancelButtonRef}>
-									Cancel
-								</button>
+													onClick={closeModal}
+													ref={cancelButtonRef}>
+													Cancel
+												</button>
+											</div>
+										</form>
+									</div>
+								</div>
 							</div>
 						</div>
 					</Transition.Child>
