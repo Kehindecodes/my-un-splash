@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
-const DisplayImages = ({ images, error, searchItem }) => {
+const DisplayImages = ({ images, error, searchItem, handleDelete }) => {
 	// const returnErr = () => console.log(data.images);
 	// returnErr();
+
 	if (error) return <div> failed to load ....</div>;
 	if (!images) return <div>Loading....</div>;
 
@@ -28,7 +29,9 @@ const DisplayImages = ({ images, error, searchItem }) => {
 						/>
 						<div className=' text-center bg-trans opacity-0 absolute top-0 right-0 w-full h-full  rounded-xl group-hover:opacity-100 duration-500 z-10 '>
 							<div className='absolute top-3 right-3'>
-								<button className=' border-solid border-2  border-red text-sm text-red text-center w-16 h-6 rounded-xl  '>
+								<button
+									className=' border-solid border-2  border-red text-sm text-red text-center w-16 h-6 rounded-xl  '
+									onClick={() => handleDelete(image)}>
 									delete
 								</button>
 							</div>

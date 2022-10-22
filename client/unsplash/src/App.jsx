@@ -11,8 +11,8 @@ const fetcher = async (url) => {
 	return res.data.images;
 };
 function App() {
-	const { mutate } = useSWRConfig();
-	const { data, error } = useSWR('/api/v1/images', fetcher);
+	// const { mutate } = useSWRConfig();
+	const { data, error, mutate } = useSWR('/api/v1/images', fetcher);
 	const [searchTerm, setSearchTerm] = useState('');
 	const [modalIsOpen, setIsOpen] = useState(false);
 	const [label, setLabel] = useState('');
@@ -52,7 +52,7 @@ function App() {
 		// request. Since the API will return the updated
 		// data, there is no need to start a new revalidation
 		// and we can directly populate the cache.
-		await mutate('/api/v1/images', updateFn(newImage), {
+		await mutate(updateFn(newImage), {
 			optimisticData: [...data, newImage],
 			rollbackOnError: true,
 			populateCache: true,
@@ -73,10 +73,28 @@ function App() {
 		console.log('sent..');
 	};
 
+	const handleDelete = async (datas) => {
+		await mutate(
+			`/api/v1/images/${datas._id}`,
+			data.filter((img) => img.id !== datas._id),
+			false,
+		);
+
+		await fetch(`/api/v1/images/${datas._id}`, {
+			method: 'DELETE',
+		});
+		console.log('deleted');
+		console.log(datas._id);
+	};
 	return (
 		<div className='App'>
 			<Header value={searchTerm} onChange={onChange} openModal={openModal} />
-			<DisplayImages error={error} images={data} searchItem={searchTerm} />
+			<DisplayImages
+				error={error}
+				images={data}
+				searchItem={searchTerm}
+				handleDelete={handleDelete}
+			/>
 			<AddModal
 				openModal={openModal}
 				closeModal={closeModal}
