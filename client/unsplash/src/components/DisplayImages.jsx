@@ -31,7 +31,7 @@ const DisplayImages = ({ images, error, searchItem, handleDelete }) => {
 							<div className='absolute top-3 right-3'>
 								<button
 									className=' border-solid border-2  border-red text-sm text-red text-center w-16 h-6 rounded-xl  '
-									onClick={() => handleDelete(image)}>
+									onClick={() => handleDelete(image._id)}>
 									delete
 								</button>
 							</div>

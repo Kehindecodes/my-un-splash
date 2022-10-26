@@ -5,18 +5,22 @@ import Header from './components/Header';
 import useSWR, { useSWRConfig } from 'swr';
 import axios from 'axios';
 import AddModal from './components/AddModal';
+import DeleteModal from './components/DeleteModal.jsx';
 
 const fetcher = async (url) => {
 	const res = await axios.get(url);
 	return res.data.images;
 };
 function App() {
-	// const { mutate } = useSWRConfig();
-	const { data, error, mutate } = useSWR('/api/v1/images', fetcher);
+	const { mutate } = useSWRConfig();
+	const { data, error } = useSWR('/api/v1/images', fetcher);
 	const [searchTerm, setSearchTerm] = useState('');
 	const [modalIsOpen, setIsOpen] = useState(false);
 	const [label, setLabel] = useState('');
 	const [url, setUrl] = useState('');
+	const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+	const [id, setId] = useState(null);
+	const [deleteMessage, setDeleteMessage] = useState(null);
 	// const [images, setImages] = useState(data);
 	// console.log(data);
 
@@ -35,13 +39,26 @@ function App() {
 	const openModal = () => {
 		setIsOpen(true);
 	};
+	const showDeleteModal = (id) => {
+		setId(id);
+		setShowDeleteConfirmation(true);
+		setDeleteMessage(
+			`Are you sure you want to delete '${
+				data.find((x) => x._id === id).label
+			}'?`,
+		);
+	};
 	const closeModal = () => {
 		setIsOpen(false);
+	};
+	const hideDeleteModal = () => {
+		setShowDeleteConfirmation(false);
 	};
 	const updateFn = async (image) => {
 		const images = [...data, image];
 		return images;
 	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const newImage = {
@@ -52,7 +69,7 @@ function App() {
 		// request. Since the API will return the updated
 		// data, there is no need to start a new revalidation
 		// and we can directly populate the cache.
-		await mutate(updateFn(newImage), {
+		await mutate('/api/v1/images', updateFn(newImage), {
 			optimisticData: [...data, newImage],
 			rollbackOnError: true,
 			populateCache: true,
@@ -72,19 +89,20 @@ function App() {
 		closeModal();
 		console.log('sent..');
 	};
-
-	const handleDelete = async (datas) => {
+	// delete image and update the UI
+	const handleDelete = async (id) => {
 		await mutate(
-			`/api/v1/images/${datas._id}`,
-			data.filter((img) => img.id !== datas._id),
+			`/api/v1/images/${id}`,
+			data.filter((img) => img.id !== id),
 			false,
 		);
 
-		await fetch(`/api/v1/images/${datas._id}`, {
+		await fetch(`/api/v1/images/${id}`, {
 			method: 'DELETE',
 		});
+		setShowDeleteConfirmation(false);
+		console.log(id);
 		console.log('deleted');
-		console.log(datas._id);
 	};
 	return (
 		<div className='App'>
@@ -93,7 +111,7 @@ function App() {
 				error={error}
 				images={data}
 				searchItem={searchTerm}
-				handleDelete={handleDelete}
+				handleDelete={showDeleteModal}
 			/>
 			<AddModal
 				openModal={openModal}
@@ -104,6 +122,14 @@ function App() {
 				handleSubmit={handleSubmit}
 				label={label}
 				url={url}
+			/>
+			<DeleteModal
+				openModal={showDeleteModal}
+				closeModal={hideDeleteModal}
+				modalIsOpen={showDeleteConfirmation}
+				id={id}
+				message={deleteMessage}
+				confirmDelete={handleDelete}
 			/>
 		</div>
 	);
