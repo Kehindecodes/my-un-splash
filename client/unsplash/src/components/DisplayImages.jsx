@@ -8,7 +8,7 @@ const DisplayImages = ({ images, error, searchItem, handleDelete }) => {
 	if (!images) return <div>Loading....</div>;
 
 	return (
-		<div className='grid overflow-hidden grid-cols-3 grid-rows-2 gap-7 mt-12 '>
+		<div className=' gap-8 columns-3  mt-12  '>
 			{images
 				.filter((filteredImage) => {
 					if (searchItem === '') {
@@ -19,13 +19,11 @@ const DisplayImages = ({ images, error, searchItem, handleDelete }) => {
 						return filteredImage;
 				})
 				.map((image, key) => (
-					<div
-						key={key}
-						className='group relative wrapper hover:cursor-pointer w-normal'>
+					<div key={key} className='relative hover:cursor-pointer mb-4'>
 						<img
 							src={image.url}
 							alt={image.label}
-							className='rounded-xl w-full h-small inset-0 bg-cover bg-center z-0 '
+							className='rounded-xl  inset-0 bg-cover bg-center z-0 '
 						/>
 						<div className=' text-center bg-trans opacity-0 absolute top-0 right-0 w-full h-full  rounded-xl group-hover:opacity-100 duration-500 z-10 '>
 							<div className='absolute top-3 right-3'>

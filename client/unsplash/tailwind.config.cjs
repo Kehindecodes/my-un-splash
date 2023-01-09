@@ -20,7 +20,7 @@ module.exports = {
 		extend: {
 			width: {
 				c: '300px',
-				normal: '382.87px',
+				// normal: '382.87px',
 				modal: '620px',
 			},
 			height: {
