@@ -14,7 +14,7 @@ const DeleteModal = ({
 		<Transition.Root show={modalIsOpen} as={Fragment}>
 			<Dialog
 				as='div'
-				className='fixed z-10 inset-0 overflow-y-auto'
+				className='fixed z-10 inset-0 overflow-y-auto h-long'
 				initialFocus={cancelButtonRef}
 				onClose={closeModal}>
 				<div className='fixed inset-0 bg-black/30' aria-hidden='true' />
@@ -51,7 +51,7 @@ const DeleteModal = ({
                  text-left 
               overflow-hidden shadow-xl 
               transform transition-all 
-              sm:my-8 sm:align-middle  h-modal w-modal'>
+              sm:my-8 sm:align-middle  h-smallmodal w-modal'>
 							<div className='bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4'>
 								<div className='sm:flex sm:items-start'>
 									<div className='mt-3 text-center sm:mt-0 sm:text-left w-full'>

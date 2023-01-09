@@ -26,6 +26,7 @@ module.exports = {
 			height: {
 				small: '287.11px',
 				modal: '367.2px',
+				smallmodal: '220px',
 			},
 		},
 	},

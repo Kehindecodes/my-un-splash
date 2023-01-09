@@ -8,7 +8,7 @@ const DisplayImages = ({ images, error, searchItem, handleDelete }) => {
 	if (!images) return <div>Loading....</div>;
 
 	return (
-		<div className=' gap-8 columns-3  mt-12  '>
+		<div className=' gap-8  sm:columns-2 md:columns-3 mt-12  '>
 			{images
 				.filter((filteredImage) => {
 					if (searchItem === '') {
@@ -19,7 +19,9 @@ const DisplayImages = ({ images, error, searchItem, handleDelete }) => {
 						return filteredImage;
 				})
 				.map((image, key) => (
-					<div key={key} className='relative hover:cursor-pointer mb-4'>
+					<div
+						key={key}
+						className='relative group wrapper hover:cursor-pointer mb-4'>
 						<img
 							src={image.url}
 							alt={image.label}
