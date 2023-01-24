@@ -13,6 +13,7 @@ module.exports = {
 			text2: '#4f4f4f',
 			placeholder: '#bdbdbd',
 		},
+
 		fontFamily: {
 			noto: ['Noto Sans', 'sans-serif'],
 			serif: ['Merriweather', 'serif'],
@@ -21,6 +22,7 @@ module.exports = {
 			width: {
 				c: '300px',
 				// normal: '382.87px',
+				// small_c: '150px',
 				modal: '620px',
 			},
 			height: {
@@ -28,6 +30,7 @@ module.exports = {
 				modal: '367.2px',
 				smallmodal: '220px',
 			},
+			
 		},
 	},
 	plugins: [require('@tailwindcss/forms')],

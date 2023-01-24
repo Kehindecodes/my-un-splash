@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const DisplayImages = ({ images, error, searchItem, handleDelete }) => {
 	// const returnErr = () => console.log(data.images);
 	// returnErr();
-
 	if (error) return <div> failed to load ....</div>;
 	if (!images) return <div>Loading....</div>;
-
+	const reversed = [...images].reverse();
+	console.log(reversed);
 	return (
-		<div className=' gap-8  sm:columns-2 md:columns-3 mt-12  '>
-			{images
+		<div className=' gap-8 sm:columns-2 md:columns-3 my-12 '>
+			{reversed
 				.filter((filteredImage) => {
 					if (searchItem === '') {
 						return filteredImage;
