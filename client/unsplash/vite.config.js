@@ -9,4 +9,9 @@ export default defineConfig({
 			'/api': 'http://localhost:2022/',
 		},
 	},
+	// base: '/public/',
+	build: {
+		outDir: '../../public',
+		assetsDir: 'assets',
+	},
 });
