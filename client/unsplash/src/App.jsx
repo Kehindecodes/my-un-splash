@@ -105,7 +105,7 @@ function App() {
 		console.log('deleted');
 	};
 	return (
-		<div className='App'>
+		<div className='App container'>
 			<Header value={searchTerm} onChange={onChange} openModal={openModal} />
 			<DisplayImages
 				error={error}
