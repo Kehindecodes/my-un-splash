@@ -4,7 +4,11 @@
   padding: 2rem;
   text-align: center;
 }
-
+/* body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+} */
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -112,3 +116,11 @@ opacity: 1 !important;
   width: 360px !important;
 } */
 }
+/* 
+footer{
+  flex-shrink: 0;
+  position:relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+} */
