@@ -5,11 +5,11 @@ const Footer = () => {
 		<footer>
 			<p>
 				created by{' '}
-				<a className={classes.a} href='https://github.com/Kehindecodes'>
-					<span style={{ fontWeight: 600 }}>Oki kehinde</span>
+				<a className='hover:underline' href='https://github.com/Kehindecodes'>
+					<span>Oki kehinde</span>
 				</a>
 				-{' '}
-				<a className={classes.a} href='devChallenges.io'>
+				<a className='hover:underline' href='devChallenges.io'>
 					devChallenges.io
 				</a>
 			</p>

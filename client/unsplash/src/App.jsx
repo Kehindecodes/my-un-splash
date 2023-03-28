@@ -6,6 +6,7 @@ import useSWR, { useSWRConfig } from 'swr';
 import axios from 'axios';
 import AddModal from './components/AddModal';
 import DeleteModal from './components/DeleteModal.jsx';
+import Footer from './components/Footer';
 
 const fetcher = async (url) => {
 	const res = await axios.get(url);
@@ -131,6 +132,7 @@ function App() {
 				message={deleteMessage}
 				confirmDelete={handleDelete}
 			/>
+			<Footer />
 		</div>
 	);
 }
