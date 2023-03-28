@@ -9,7 +9,7 @@ const DisplayImages = ({ images, error, searchItem, handleDelete }) => {
 	const reversed = [...images].reverse();
 	console.log(reversed);
 	return (
-		<div className=' gap-8 xs:gap-0 md:gap-8   xs:column-1 sm:columns-2 md:columns-3 my-12 '>
+		<div className=' gap-8 xs:gap-0 md:gap-8   xs:columns-1 sm:columns-2 md:columns-3 my-12  xs:w-full  '>
 			{reversed
 				.filter((filteredImage) => {
 					if (searchItem === '') {
@@ -22,7 +22,7 @@ const DisplayImages = ({ images, error, searchItem, handleDelete }) => {
 				.map((image, key) => (
 					<div
 						key={key}
-						className='relative group wrapper hover:cursor-pointer mb-4 w-full'>
+						className='relative group wrapper hover:cursor-pointer mb-4 w-full img-wrapper'>
 						<img
 							src={image.url}
 							alt={image.label}
